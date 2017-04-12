@@ -336,7 +336,9 @@ class DebianHandler():
                 option = [x.strip() for x in option]
 
                 if option[1] == version:
-                    return option[2]
+                    # The first space will be the location of the missing url slash
+                    first_space = option[2].find(" ")
+                    return option[2][:first_space] + '/' + option[2][first_space:]
 
         except Exception as e:
             logger.error(
