@@ -1059,8 +1059,9 @@ class DebUtils:
         cmd = [self.service, self.daemon_name, 'status']
         result, err = run_command(cmd)
 
-        if 'TopPatch Agent is running' not in err:
+        if 'inactive' in result:
             raise Exception(err)
+
 
     def install(self, args):
         errors = []
